@@ -6,7 +6,7 @@
             <h2 class="text-xl font-semibold text-gray-800">Dados do Sócio</h2>
         </div>
 
-        <form method="POST" action="{{ route('socios.store') }}" class="p-6 space-y-6">
+        <form method="POST" id="formSocioCreate" action="{{ route('socios.store') }}" class="p-6 space-y-6">
             @csrf
 
             <div>
@@ -26,7 +26,7 @@
                     <label for="cpf" class="block text-sm font-medium text-gray-700 mb-2">
                         CPF *
                     </label>
-                    <input type="text" name="cpf" id="cpf" required maxlength="11"
+                    <input type="text" name="cpf" id="cpf" required maxlength="14"
                            class="w-full px-3 py-2 border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 @error('cpf') border-red-500 @enderror"
                            value="{{ old('cpf') }}" placeholder="Apenas números">
                     @error('cpf')
@@ -87,7 +87,14 @@
 <script>
 // Máscara para CPF
 document.getElementById('cpf').addEventListener('input', function(e) {
-    let value = e.target.value.replace(/\D/g, '');
+    let value = e.target.value.replace(/\D/g, ''); // Remove tudo que não for número
+    if (value.length > 11) value = value.slice(0, 11); // Limita a 11 dígitos
+
+    // Aplica a máscara: 000.000.000-00
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
     e.target.value = value;
 });
 
@@ -102,6 +109,17 @@ document.getElementById('telefone').addEventListener('input', function(e) {
         value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
     }
     e.target.value = value;
+});
+
+document.getElementById('formSocioCreate').addEventListener('submit', function (event) {
+ 
+ const cpfInput = document.getElementById('cpf');
+ const telefoneInput = document.getElementById('telefone');
+ 
+ cpfInput.value = cpfInput.value.replace(/\D/g, '');
+ telefoneInput.value = telefoneInput.value.replace(/\D/g, '');
+
+
 });
 </script>
 </x-layouts.app>

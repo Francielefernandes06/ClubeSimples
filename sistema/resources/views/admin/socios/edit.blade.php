@@ -9,7 +9,7 @@
             </a>
         </div>
 
-        <form method="POST" action="{{ route('socios.update', $socio) }}" class="p-6 space-y-6">
+        <form method="POST" id="formSocio" action="{{ route('socios.update', $socio) }}" class="p-6 space-y-6">
             @csrf
             @method('PUT')
 
@@ -30,7 +30,7 @@
                     <label for="cpf" class="block text-sm font-medium text-gray-700 mb-2">
                         CPF *
                     </label>
-                    <input type="text" name="cpf" id="cpf" required maxlength="11"
+                    <input type="text" name="cpf" id="cpf" required maxlength="14"
                            class="w-full px-3 py-2 border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 @error('cpf') border-red-500 @enderror"
                            value="{{ old('cpf', $socio->cpf) }}" placeholder="Apenas números">
                     @error('cpf')
@@ -89,15 +89,28 @@
 </div>
 
 <script>
-// Máscara para CPF
-document.getElementById('cpf').addEventListener('input', function(e) {
-    let value = e.target.value.replace(/\D/g, '');
-    e.target.value = value;
+document.getElementById('formSocio').addEventListener('submit', function (event) {
+ 
+    const cpfInput = document.getElementById('cpf');
+    const telefoneInput = document.getElementById('telefone');
+    
+    cpfInput.value = cpfInput.value.replace(/\D/g, '');
+    telefoneInput.value = telefoneInput.value.replace(/\D/g, '');
+
+  
 });
 
-// Máscara para telefone
-document.getElementById('telefone').addEventListener('input', function(e) {
-    let value = e.target.value.replace(/\D/g, '');
+function aplicarMascaraCPF(input) {
+    let value = input.value.replace(/\D/g, '');
+    if (value.length > 11) value = value.slice(0, 11);
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    input.value = value;
+}
+
+function aplicarMascaraTelefone(input) {
+    let value = input.value.replace(/\D/g, '');
     if (value.length >= 11) {
         value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
     } else if (value.length >= 7) {
@@ -105,7 +118,28 @@ document.getElementById('telefone').addEventListener('input', function(e) {
     } else if (value.length >= 3) {
         value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
     }
-    e.target.value = value;
+    input.value = value;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const cpfInput = document.getElementById('cpf');
+    const telefoneInput = document.getElementById('telefone');
+
+    // Aplica ao carregar
+    aplicarMascaraCPF(cpfInput);
+    aplicarMascaraTelefone(telefoneInput);
+
+    // Aplica enquanto digita
+    cpfInput.addEventListener('input', function () {
+        aplicarMascaraCPF(cpfInput);
+    });
+
+    telefoneInput.addEventListener('input', function () {
+        aplicarMascaraTelefone(telefoneInput);
+    });
+
 });
+
+
 </script>
 </x-layouts.app>

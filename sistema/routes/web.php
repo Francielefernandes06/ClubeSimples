@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EventoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MensalidadeController;
 use App\Http\Controllers\SocioController;
@@ -9,9 +11,11 @@ use Livewire\Volt\Volt;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
-Route::view('dashboard', 'dashboard')
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('socios', SocioController::class);
@@ -27,6 +31,13 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/mensalidades/{mensalidade}/marcar-pago', [MensalidadeController::class, 'marcarPago'])->name('mensalidades.marcar-pago');
     Route::post('/mensalidades/gerar-mes', [MensalidadeController::class, 'gerarMensalidadesMes'])->name('mensalidades.gerar-mes');
 
+
+    Route::get('/admin/eventos', [EventoController::class, 'index'])->name('admin.eventos.index');
+    Route::get('/admin/eventos/create', [EventoController::class, 'create'])->name('admin.eventos.create');
+    Route::post('/admin/eventos', [EventoController::class, 'store'])->name('admin.eventos.store');
+    Route::get('/admin/eventos/{evento}/edit', [EventoController::class, 'edit'])->name('admin.eventos.edit');
+    Route::put('/admin/eventos/{evento}', [EventoController::class, 'update'])->name('admin.eventos.update');
+    Route::delete('/admin/eventos/{evento}', [EventoController::class, 'destroy'])->name('admin.eventos.destroy');
 
     Route::redirect('settings', 'settings/profile');
 

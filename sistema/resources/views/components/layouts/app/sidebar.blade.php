@@ -153,7 +153,7 @@
                     <i class="fas fa-credit-card mr-3"></i>
                     Mensalidades
                 </a>
-                <a href=""
+                <a href="{{ route('admin.eventos.index') }}"
                     class="flex items-center px-6 py-3 text-gray-700 hover:bg-primary-50 hover:text-primary-600 {{ request()->routeIs('admin.eventos.*') ? 'bg-primary-50 text-primary-600 border-r-2 border-primary-600' : '' }}">
                     <i class="fas fa-calendar mr-3"></i>
                     Eventos

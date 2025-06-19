@@ -158,7 +158,7 @@
                                         <span class="text-sm text-gray-500">
                                             {{ $evento->participantes_inscritos }}/{{ $evento->limite_participantes }} inscritos
                                         </span>
-                                        @if($evento->temVagas)
+                                        @if($evento->temVagas())
                                             <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Vagas
                                                 disponíveis</span>
                                         @else

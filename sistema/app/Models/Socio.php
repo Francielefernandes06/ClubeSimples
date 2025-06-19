@@ -44,6 +44,24 @@ class Socio extends Model
             ->exists();
     }
 
+    public function isAdimplente()
+    {
+        return !$this->mensalidades()
+            ->where('status', 'atrasado')
+            ->where('data_vencimento', '<', Carbon::now()->subDays(30))
+            ->exists();
+    }
+
+    public function getNumeroMatricula()
+    {
+        return str_pad($this->id, 6, '0', STR_PAD_LEFT);
+    }
+
+    public function getValidadeCarteirinha()
+    {
+        return Carbon::now()->addYear();
+    }
+
     public static function validarCPF($cpf)
     {
         $cpf = preg_replace('/[^0-9]/', '', $cpf);

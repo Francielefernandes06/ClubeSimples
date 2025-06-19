@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarteirinhaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\HomeController;
@@ -38,6 +39,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/eventos/{evento}/edit', [EventoController::class, 'edit'])->name('admin.eventos.edit');
     Route::put('/admin/eventos/{evento}', [EventoController::class, 'update'])->name('admin.eventos.update');
     Route::delete('/admin/eventos/{evento}', [EventoController::class, 'destroy'])->name('admin.eventos.destroy');
+
+    Route::get('/carteirinha/{socio}', [CarteirinhaController::class, 'show'])->name('carteirinha.show');
+    Route::get('/carteirinha/{socio}/pdf', [CarteirinhaController::class, 'downloadPdf'])->name('carteirinha.pdf');
+    Route::get('/carteirinha/validar/{socio}', [CarteirinhaController::class, 'validar'])->name('carteirinha.validar');
+
+    // Admin - Carteirinhas
+    Route::get('/admin/carteirinhas', [CarteirinhaController::class, 'index'])->name('admin.carteirinhas.index');
 
     Route::redirect('settings', 'settings/profile');
 

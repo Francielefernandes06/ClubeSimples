@@ -41,12 +41,12 @@ class SocioController extends Controller
 
     public function show(Socio $socio)
     {
-        // $mensalidades = $socio->mensalidades()
-        //     ->orderBy('ano', 'desc')
-        //     ->orderBy('mes', 'desc')
-        //     ->get();
+       $mensalidades = $socio->mensalidades()
+           ->orderBy('ano', 'desc')
+           ->orderBy('mes', 'desc')
+           ->get();
 
-        return view('admin.socios.show', compact('socio', /* 'mensalidades' */));
+        return view('admin.socios.show', compact('socio',  'mensalidades' ));
     }
 
     public function edit(Socio $socio)

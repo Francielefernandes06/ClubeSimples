@@ -149,8 +149,7 @@
                     <i class="fas fa-users mr-3"></i>
                     Sócios
                 </a>
-                <a href=""
-                    class="flex items-center px-6 py-3 text-gray-700 hover:bg-primary-50 hover:text-primary-600 {{ request()->routeIs('mensalidades.*') ? 'bg-primary-50 text-primary-600 border-r-2 border-primary-600' : '' }}">
+                <a href="{{ route('mensalidades.index') }}" class="flex items-center px-6 py-3 text-gray-700 hover:bg-primary-50 hover:text-primary-600 {{ request()->routeIs('mensalidades.*') ? 'bg-primary-50 text-primary-600 border-r-2 border-primary-600' : '' }}">
                     <i class="fas fa-credit-card mr-3"></i>
                     Mensalidades
                 </a>

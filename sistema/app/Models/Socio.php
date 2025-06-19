@@ -26,10 +26,10 @@ class Socio extends Model
         'ativo' => 'boolean'
     ];
 
-    // public function mensalidades()
-    // {
-    //     return $this->hasMany(Mensalidade::class);
-    // }
+    public function mensalidades()
+    {
+        return $this->hasMany(Mensalidade::class);
+    }
 
     public function isBloqueado()
     {
@@ -38,11 +38,10 @@ class Socio extends Model
 
     public function temMensalidadeAtrasada()
     {
-        // return $this->mensalidades()
-          //   ->where('status', 'atrasado')
-         //    ->where('data_vencimento', '<', Carbon::now()->subDays(60))
-          //   ->exists();
-          return false; // Implementar lógica de mensalidades
+        return $this->mensalidades()
+            ->where('status', 'atrasado')
+            ->where('data_vencimento', '<', Carbon::now()->subDays(60))
+            ->exists();
     }
 
     public static function validarCPF($cpf)

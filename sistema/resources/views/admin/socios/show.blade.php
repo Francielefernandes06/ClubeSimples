@@ -119,14 +119,11 @@
                 </div>
                 <div class="p-6 space-y-4">
                     @php
-                        // $mensalidadesPendentes = $mensalidades->where('status', 'pendente')->count();
-                        // $mensalidadesAtrasadas = $mensalidades->where('status', 'atrasado')->count();
-                        // $mensalidadesPagas = $mensalidades->where('status', 'pago')->count();
-                        // $totalMultas = $mensalidades->sum('multa');
-                        $mensalidadesPagas = 1;
-                        $mensalidadesPendentes = 2;
-                        $mensalidadesAtrasadas = 2;
-                        $totalMultas = 5;
+                       $mensalidadesPendentes = $mensalidades->where('status', 'pendente')->count();
+                       $mensalidadesAtrasadas = $mensalidades->where('status', 'atrasado')->count();
+                       $mensalidadesPagas = $mensalidades->where('status', 'pago')->count();
+                       $totalMultas = $mensalidades->sum('multa');
+                        
                     @endphp
                     
                     <div class="flex justify-between items-center">
@@ -201,7 +198,7 @@
             </button>
         </div>
 
-        {{-- @if($mensalidades->count() > 0)
+        @if($mensalidades->count() > 0)
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
@@ -275,7 +272,7 @@
                 </tbody>
             </table>
         </div>
-        @else --}}
+        @else 
         <div class="p-6 text-center text-gray-500">
             <i class="fas fa-credit-card text-4xl mb-4 text-gray-300"></i>
             <p>Nenhuma mensalidade registrada para este sócio.</p>
@@ -284,7 +281,7 @@
                 Registrar Primeira Mensalidade
             </button>
         </div>
-        {{--@endif--}}
+        @endif
     </div>
 </div>
 </x-layouts.app>

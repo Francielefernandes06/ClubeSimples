@@ -162,6 +162,10 @@
                     <i class="fas fa-id-card mr-3"></i>
                     Carteirinhas
                 </a>
+                <a href="{{ route('boletos.index') }}" class="flex items-center px-6 py-3 text-gray-700 hover:bg-primary-50 hover:text-primary-600 {{ request()->routeIs('boletos.*') ? 'bg-primary-50 text-primary-600 border-r-2 border-primary-600' : ''  }}">
+                    <i class="fas fa-file-invoice mr-3"></i>
+                    <span class="ml-3">Boletos</span>
+                </a>
             </nav>
         </div>
 

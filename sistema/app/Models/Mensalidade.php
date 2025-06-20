@@ -33,6 +33,22 @@ class Mensalidade extends Model
         return $this->belongsTo(Socio::class);
     }
 
+
+
+    public function boleto()
+    {
+        return $this->hasOne(Boleto::class);
+    }
+
+    public function temBoleto()
+    {
+        return $this->boleto()->exists();
+    }
+
+    public function getValorTotalComMulta()
+    {
+        return $this->valor + $this->multa;
+    }
     public function calcularMulta()
     {
         if ($this->status === 'pago') {

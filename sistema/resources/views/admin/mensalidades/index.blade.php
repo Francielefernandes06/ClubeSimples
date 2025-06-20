@@ -192,6 +192,26 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <div class="flex space-x-2">
+                            @if($mensalidade->temBoleto())
+                            <a href="{{ route('boletos.download', $mensalidade->boleto) }}" class="text-blue-600 hover:text-blue-900" title="Download Boleto">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
+                            @if($mensalidade->boleto->podeReenviar())
+                            <form method="POST" action="{{ route('boletos.enviar-email', $mensalidade->boleto) }}" class="inline">
+                                @csrf
+                                <button type="submit" class="text-green-600 hover:text-green-900" title="Reenviar boleto">
+                                    <i class="fas fa-envelope"></i>
+                                </button>
+                            </form>
+                            @endif
+                        @else
+                            <form method="POST" action="{{ route('boletos.gerar', $mensalidade) }}" class="inline">
+                                @csrf
+                                <button type="submit" class="text-purple-600 hover:text-purple-900" title="Gerar boleto">
+                                    <i class="fas fa-file-invoice"></i>
+                                </button>
+                            </form>
+                        @endif
                             @if($mensalidade->status !== 'pago')
                             <button onclick="openPagamentoModal({{ $mensalidade->id }})" class="text-green-600 hover:text-green-900" title="Marcar como pago">
                                 <i class="fas fa-check"></i>

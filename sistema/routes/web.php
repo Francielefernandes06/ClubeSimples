@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BoletoController;
 use App\Http\Controllers\CarteirinhaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventoController;
@@ -46,6 +47,15 @@ Route::middleware(['auth'])->group(function () {
 
     // Admin - Carteirinhas
     Route::get('/admin/carteirinhas', [CarteirinhaController::class, 'index'])->name('admin.carteirinhas.index');
+
+    Route::get('/boletos', [BoletoController::class, 'index'])->name('boletos.index');
+    Route::post('/mensalidades/{mensalidade}/gerar-boleto', [BoletoController::class, 'gerar'])->name('boletos.gerar');
+    Route::get('/boletos/{boleto}/download', [BoletoController::class, 'download'])->name('boletos.download');
+    Route::post('/boletos/{boleto}/enviar-email', [BoletoController::class, 'enviarEmail'])->name('boletos.enviar-email');
+    Route::patch('/boletos/{boleto}/marcar-pago', [BoletoController::class, 'marcarPago'])->name('boletos.marcar-pago');
+    Route::delete('/boletos/{boleto}', [BoletoController::class, 'destroy'])->name('boletos.destroy');
+    Route::post('/boletos/gerar-lote', [BoletoController::class, 'gerarLote'])->name('boletos.gerar-lote');
+    Route::get('/mensalidades/{mensalidade}/segunda-via', [BoletoController::class, 'segundaVia'])->name('boletos.segunda-via');
 
     Route::redirect('settings', 'settings/profile');
 

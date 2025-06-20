@@ -222,7 +222,7 @@
 
         <!-- Footer -->
         <div class="footer">
-            <p>{{ $nomeRecebedor }} - CNPJ: 12.345.678/0001-90</p>
+            <p>{{ $nomeRecebedor }} - CNPJ: 12.345.678/0001-91</p>
             <p>Este boleto foi gerado automaticamente em {{ now()->format('d/m/Y H:i:s') }}</p>
             <p>Para sua segurança, verifique sempre a autenticidade deste documento</p>
         </div>

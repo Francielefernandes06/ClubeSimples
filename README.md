@@ -18,6 +18,13 @@ O *ClubeSimples* é uma aplicação web simples voltada para a administração d
 
 Este diretório contém os artefatos de requisitos funcionais (RF) e não funcionais (RNF) do projeto **ClubeSimples**. Toda a documentação é versionada e segue padrões definidos para garantir rastreabilidade, clareza e alinhamento com as boas práticas de engenharia de software.
 
+
+- **User Stories:** `docs/user-stories`
+- **Requisitos Funcionais:** `docs/requisitos_funcionais`
+- **Histórico de Evoluções:** `docs/historico.md`
+
+> A documentação é atualizada **sempre que o código evolui**.
+
 ---
 
 ## 🧾 Padrão de Artefato de Requisitos
@@ -75,4 +82,53 @@ Utilizamos a convenção Conventional Commits para padronizar o histórico e fac
 
 - `docs: [#2] atualizar requisitos de visualização de participações`
 
+## Como Rodar o Projeto
 
+### 1. Clone o repositório
+```
+$ git clone https://github.com/Francielefernandes06/ClubeSimples.git
+$ cd ClubeSimples
+```
+
+### 2. Instale as dependências (exemplo Laravel)
+
+```
+$ composer install
+$ npm install && npm run dev
+```
+
+### 3. Configure o arquivo .env
+```
+$ cp .env.example .env
+$ php artisan key:generate
+```
+
+### 4. Configure o banco de dados (no .env)
+````
+DB_DATABASE=clubesimples
+DB_USERNAME=root
+DB_PASSWORD=sua_senha
+````
+
+### 5. Execute as migrations
+```
+$ php artisan migrate
+```
+
+### 6. Rode o servidor local
+```
+$ php artisan serve
+```
+
+### Acesse no navegador:
+http://localhost:8000
+
+---
+
+## ✅ Checklist para Contribuição
+
+- [ ] Atualizou ou criou artefato de requisito?
+- [ ] Commit vinculado ao ID do requisito?
+- [ ] PR com descrição clara e documentação atualizada?
+
+---

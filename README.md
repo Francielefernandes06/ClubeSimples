@@ -37,20 +37,18 @@ Todos os artefatos de requisitos devem ser criados no formato **Markdown (.md)**
 
 Os arquivos de requisitos devem seguir o padrão:
 
-`REQ_<modulo>_<ID>.md`
-
+`<ID>_<modulo>.md`
 
 ### 📌 Exemplos:
 
-- `REQ_socios_RF001.md` → Cadastro de sócios  
-- `REQ_eventos_RF002.md` → Agendamento de eventos  
-- `REQ_participacoes_RF003.md` → Visualização de participações  
-- `REQ_sistema_RNF001.md` → Acesso via navegador (requisito não funcional)
+- `RF001_socios.md` → Cadastro de sócios  
+- `RF002_eventos.md` → Agendamento de eventos  
+- `RF003_participacoes.md` → Visualização de participações  
+- `RNF001_sistema.md` → Acesso via navegador (requisito não funcional)
 
 **Legenda:**
-- `REQ_` → Prefixo fixo
-- `<modulo>` → Nome do módulo funcional ou área do sistema
 - `<ID>` → Código identificador do requisito (RF001, RNF001, etc.)
+- `<modulo>` → Nome do módulo funcional ou área do sistema
 
 ---
 

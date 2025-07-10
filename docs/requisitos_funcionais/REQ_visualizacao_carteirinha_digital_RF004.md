@@ -1,59 +1,26 @@
-# RF004 – Visualização da Carteirinha Digital
+# REQ_socios_RF004.md
 
-## 🎯 Objetivo
+**ID**: RF004
 
-Permitir que sócios adimplentes visualizem e baixem sua carteirinha digital através do sistema ClubeSimples, garantindo autenticidade e praticidade na identificação em ambientes do clube e eventos.
+**Tipo**: Requisito Funcional
 
----
+**Nome**: Visualização da Carteirinha Digital
 
-## 📌 Funcionalidade
+**Descrição**:  
+- O sistema deve disponibilizar, na área logada do sócio, uma seção chamada "Minha Carteirinha".  
+- A carteirinha digital deve conter: nome completo, matrícula, data de nascimento, validade (1 ano a partir da emissão) e QR Code com link para validação.  
+- Deve estar disponível para visualização online e também para download em PDF.  
+- A visualização deve ser responsiva e o PDF seguir o mesmo layout institucional com logomarca do clube.  
+- Apenas sócios ativos e adimplentes podem acessar a funcionalidade.  
+- Sócios inadimplentes devem visualizar a mensagem: "Sua carteirinha está indisponível devido à pendência de mensalidade. Regularize sua situação para acessar este recurso."  
 
-- O sistema deve disponibilizar, na área logada do sócio, uma seção chamada **"Minha Carteirinha"**.
-- A carteirinha digital deve conter:
-  - Nome completo do sócio
-  - Matrícula (ID do sócio)
-  - Data de nascimento
-  - Validade da carteirinha (1 ano a partir da emissão)
-  - QR Code com link para validação
-- A carteirinha deve estar disponível em tela e também em formato PDF para download.
+**Justificativa**:  
+- Garantir identificação prática e autêntica dos sócios em ambientes do clube e eventos, com controle de acesso baseado na adimplência.
 
----
+**Prioridade**: Alta
 
-## 🔒 Restrições de Acesso
+**Status**: Proposto
 
-- Apenas sócios **ativos e adimplentes** podem visualizar ou baixar a carteirinha.
-- Caso o sócio esteja inadimplente, o sistema deve exibir uma mensagem:  
-  _"Sua carteirinha está indisponível devido à pendência de mensalidade. Regularize sua situação para acessar este recurso."_
+**Responsavel**: Franciele
 
----
-
-## 📱 Requisitos de Interface
-
-- A visualização deve ser responsiva (adaptada a dispositivos móveis).
-- A versão em PDF deve seguir o mesmo layout visual da versão online.
-- Deve conter a logomarca do clube e design institucional padronizado.
-
----
-
-## 🛠️ Dependências
-
-- Geração de QR Code (via biblioteca `Simple QrCode` ou equivalente).
-- Verificação de status financeiro do sócio.
-- Nova rota no sistema: `/socio/carteirinha`
-
----
-
-## ✅ Critérios de Aceitação
-
-- Sócios adimplentes conseguem visualizar e baixar sua carteirinha.
-- Sócios inadimplentes visualizam mensagem de bloqueio.
-- QR Code redireciona para URL de validação com status real do sócio.
-- Layout e informações seguem o padrão estabelecido.
-
----
-
-**Status:** Proposto  
-**Versão:** 2.0  
-**Relacionado à US:** [US004 – Carteirinha Digital de Sócio](../user-stories/US_CarteirinhaDigital_v2_US004.md)  
-**Data da Criação:** 2025-06-19  
-**Responsável:** @francielefernandes06
+**Data da Última Atualização**: 2025-06-19
